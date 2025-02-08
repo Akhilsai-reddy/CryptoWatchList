@@ -56,7 +56,7 @@ const CryptoList: React.FC = () => {
             </p>
 
             <button
-              onClick={() => openModal(crypto.symbol)} 
+              onClick={() => openModal(crypto)} 
               className="mt-6 py-2 px-8 bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-full shadow-lg hover:bg-blue-800 transition-all duration-300"
             >
               Add to Watchlist

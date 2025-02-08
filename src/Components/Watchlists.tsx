@@ -19,6 +19,8 @@ const ManageWatchlist: React.FC = () => {
   const handleBack = () => {
     window.history.back();
   };
+console.log("asd",selectedWatchlist &&
+  watchlists[selectedWatchlist]);
 
   return (
     <div className="p-8 bg-gradient-to-b from-blue-100 to-white min-h-screen">

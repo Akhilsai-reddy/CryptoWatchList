@@ -2,15 +2,14 @@ import { useEffect } from 'react';
 
 const useWebSocket = (symbol: string, callback: (price: string) => void) => {
   useEffect(() => {
-    const wsSymbol = symbol.toLowerCase() + '@trade'; // e.g., 'zecusdt@trade'
+    const wsSymbol = symbol?.toLowerCase() + '@trade'; 
     const socket = new WebSocket(`wss://stream.binance.com:9443/ws/${wsSymbol}`);
 
-    // Handle successful connection
     socket.onopen = () => {
       console.log(`WebSocket connected for ${symbol}`);
     };
 
-    // Handle incoming messages
+
     socket.onmessage = (event) => {
       try {
         const message = JSON.parse(event.data);
@@ -26,12 +25,11 @@ const useWebSocket = (symbol: string, callback: (price: string) => void) => {
       }
     };
 
-    // Handle WebSocket errors
+
     socket.onerror = (error) => {
       console.error(`WebSocket error for ${symbol}:`, error);
     };
 
-    // Handle connection closure
     socket.onclose = (event) => {
       if (event.wasClean) {
         console.log(`WebSocket closed cleanly for ${symbol}`);
@@ -40,7 +38,6 @@ const useWebSocket = (symbol: string, callback: (price: string) => void) => {
       }
     };
 
-    // Clean up on component unmount
     return () => {
       socket.close();
     };
